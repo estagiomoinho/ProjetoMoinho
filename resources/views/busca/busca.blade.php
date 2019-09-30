@@ -97,7 +97,7 @@
                                 <thead>
                                     <tr>
                                         <th>Capa</th>
-                                        <th>Nome</th>
+                                        <th>Título</th>
                                         <th>Autor</th>
                                         <th>Genero</th>
                                         <th>Editora</th>

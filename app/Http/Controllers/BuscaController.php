@@ -93,18 +93,19 @@ class BuscaController extends Controller
         $livro = Livro::select('*');
 
          if($R->cpbusca != null){
-            $livro->where('nome', 'ilike', '%'.$R->cpbusca.'%');
+            $livro->where('titulo', 'like', '%'.$R->cpbusca.'%');
              
         }
         $data = array();
         foreach ( $livro->get() as $a ) {
 
             $nestedData = array ();
-            $nestedData [0] = $a->capa;
-            $nestedData [1] = $a->nome;
+            $nestedData [0] = $a->titulo;
+            $nestedData [1] = $a->titulo;
             $nestedData [2] = $a->autor;
             $nestedData [3] = $a->genero;
             $nestedData [4] = $a->editora;
+            $nestedData [5] = $a->sinopse;
             $data [] = $nestedData;
         }
 
@@ -116,66 +117,66 @@ class BuscaController extends Controller
         $livro = Livro::select('*');
 
         if(($R->nome != null)&&($R->autor == null)&&($R->genero== null)&& ($R->editora == null)){
-            $livro->where('nome', 'ilike', '%'.$R->nome.'%');     
+            $livro->where('titulo', 'like', '%'.$R->nome.'%');     
         }
         if(($R->autor != null)&&($R->nome == null)&&($R->genero== null)&& ($R->editora == null)){
-            $livro->where('autor', 'ilike', '%'.$R->autor.'%');  
+            $livro->where('autor', 'like', '%'.$R->autor.'%');  
         }
         if(($R->genero!= null)&&($R->nome == null)&&($R->autor== null)&& ($R->editora == null)){
-            $livro->where('genero', 'ilike', '%'.$R->genero.'%');
+            $livro->where('genero', 'like', '%'.$R->genero.'%');
         }
         if(($R->editora != null)&&($R->nome == null)&&($R->autor== null)&& ($R->genero == null)){
-            $livro->where('editora', 'ilike', '%'.$R->editora.'%');
+            $livro->where('editora', 'like', '%'.$R->editora.'%');
         }
          if(($R->nome != null)&&($R->autor != null)&&($R->genero!= null)&& ($R->editora != null)){
-            $livro->where('nome', 'ilike', '%'.$R->nome.'%');
-            $livro->where('autor', 'ilike', '%'.$R->autor.'%'); 
-            $livro->where('genero', 'ilike', '%'.$R->genero.'%');
-             $livro->where('editora', 'ilike', '%'.$R->editora.'%');    
+            $livro->where('titulo', 'like', '%'.$R->nome.'%');
+            $livro->where('autor', 'like', '%'.$R->autor.'%'); 
+            $livro->where('genero', 'like', '%'.$R->genero.'%');
+             $livro->where('editora', 'like', '%'.$R->editora.'%');    
         }
         if(($R->nome != null)&&($R->autor != null)&& ($R->editora != null)&&($R->genero== null)){
-            $livro->where('nome', 'ilike', '%'.$R->nome.'%');
-            $livro->where('autor', 'ilike', '%'.$R->autor.'%'); 
-             $livro->where('editora', 'ilike', '%'.$R->editora.'%');    
+            $livro->where('titulo', 'like', '%'.$R->nome.'%');
+            $livro->where('autor', 'like', '%'.$R->autor.'%'); 
+             $livro->where('editora', 'like', '%'.$R->editora.'%');    
         }
         if(($R->nome != null)&&($R->genero!= null)&& ($R->editora != null)&&($R->oautor== null)){
-            $livro->where('nome', 'ilike', '%'.$R->nome.'%');
-            $livro->where('genero', 'ilike', '%'.$R->genero.'%');
-             $livro->where('editora', 'ilike', '%'.$R->editora.'%');    
+            $livro->where('titulo', 'like', '%'.$R->nome.'%');
+            $livro->where('genero', 'like', '%'.$R->genero.'%');
+             $livro->where('editora', 'like', '%'.$R->editora.'%');    
         }
         if(($R->nome != null)&&($R->autor != null)&&($R->genero!= null)&&($R->editora== null)){
-            $livro->where('nome', 'ilike', '%'.$R->nome.'%');
-            $livro->where('autor', 'ilike', '%'.$R->autor.'%'); 
-            $livro->where('genero', 'ilike', '%'.$R->genero.'%');
+            $livro->where('titulo', 'like', '%'.$R->nome.'%');
+            $livro->where('autor', 'like', '%'.$R->autor.'%'); 
+            $livro->where('genero', 'like', '%'.$R->genero.'%');
         }
         if(($R->autor != null)&&($R->genero!= null)&& ($R->editora != null)&&($R->nome== null)){
-            $livro->where('autor', 'ilike', '%'.$R->autor.'%'); 
-            $livro->where('genero', 'ilike', '%'.$R->genero.'%');
-             $livro->where('editora', 'ilike', '%'.$R->editora.'%');    
+            $livro->where('autor', 'like', '%'.$R->autor.'%'); 
+            $livro->where('genero', 'like', '%'.$R->genero.'%');
+             $livro->where('editora', 'like', '%'.$R->editora.'%');    
         }
        if(($R->nome != null)&&($R->autor != null)&&($R->genero== null)&& ($R->editora == null)){
-            $livro->where('nome', 'ilike', '%'.$R->nome.'%');
-            $livro->where('autor', 'ilike', '%'.$R->autor.'%');    
+            $livro->where('titulo', 'like', '%'.$R->nome.'%');
+            $livro->where('autor', 'like', '%'.$R->autor.'%');    
         }
         if(($R->nome != null)&&($R->autor == null)&&($R->genero== null)&& ($R->editora != null)){
-            $livro->where('nome', 'ilike', '%'.$R->nome.'%');
-            $livro->where('editora', 'ilike', '%'.$R->editora.'%');    
+            $livro->where('titulo', 'like', '%'.$R->nome.'%');
+            $livro->where('editora', 'like', '%'.$R->editora.'%');    
         }
         if(($R->nome != null)&&($R->autor == null)&&($R->genero != null)&& ($R->editora == null)){
-            $livro->where('nome', 'ilike', '%'.$R->nome.'%');
-            $livro->where('genero', 'ilike', '%'.$R->genero.'%');    
+            $livro->where('titulo', 'like', '%'.$R->nome.'%');
+            $livro->where('genero', 'like', '%'.$R->genero.'%');    
         }
         if(($R->nome == null)&&($R->autor != null)&&($R->genero== null)&& ($R->editora != null)){
-            $livro->where('autor', 'ilike', '%'.$R->autor.'%');
-            $livro->where('editora', 'ilike', '%'.$R->editora.'%');    
+            $livro->where('autor', 'like', '%'.$R->autor.'%');
+            $livro->where('editora', 'like', '%'.$R->editora.'%');    
         }
         if(($R->nome == null)&&($R->autor != null)&&($R->genero!= null)&& ($R->editora == null)){
-            $livro->where('autor', 'ilike', '%'.$R->autor.'%');
-            $livro->where('genero', 'ilike', '%'.$R->genero.'%');    
+            $livro->where('autor', 'like', '%'.$R->autor.'%');
+            $livro->where('genero', 'like', '%'.$R->genero.'%');    
         }
         if(($R->nome == null)&&($R->autor == null)&&($R->genero!= null)&& ($R->editora != null)){
-            $livro->where('genero', 'ilike', '%'.$R->genero.'%');
-            $livro->where('editora', 'ilike', '%'.$R->editora.'%');    
+            $livro->where('genero', 'like', '%'.$R->genero.'%');
+            $livro->where('editora', 'like', '%'.$R->editora.'%');    
         }
 
 
@@ -183,11 +184,12 @@ class BuscaController extends Controller
         foreach ( $livro->get() as $a ) {
 
             $nestedDato = array ();
-            $nestedDato [0] = $a->capa;
-            $nestedDato [1] = $a->nome;
+            $nestedDato [0] = $a->titulo;
+            $nestedDato [1] = $a->titulo;
             $nestedDato [2] = $a->autor;
             $nestedDato [3] = $a->genero;
             $nestedDato [4] = $a->editora;
+            $nestedDato [5] = $a->sinopse;
             $dato [] = $nestedDato;
         }
 
