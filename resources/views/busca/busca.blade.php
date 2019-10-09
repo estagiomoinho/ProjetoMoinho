@@ -101,7 +101,6 @@
                                         <th>Autor</th>
                                         <th>Genero</th>
                                         <th>Editora</th>
-                                        <th>Sinopse</th>
                                     </tr>
                                 </thead>
                             </table>
