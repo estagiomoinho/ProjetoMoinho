@@ -12,13 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('buscaaberta/busca');
 });
 
 Route::resource('/busca','BuscaController');
 Route::get('busca-resultado',['uses'=> 'BuscaController@buscaLivro', 'as' =>'buscaLivro']);
 Route::get('/busca-avancada',['uses'=> 'BuscaController@buscaAvancada', 'as' =>'buscaAvancada']);
 Route::get('busca-resultado-avancado',['uses'=> 'BuscaController@buscaAvancadaLivro', 'as' =>'buscaAvancadaLivro']);
+
+//teste
+Route::get('busca-teste',['uses'=> 'BuscaController@buscaTeste', 'as' =>'buscaTeste']);
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
