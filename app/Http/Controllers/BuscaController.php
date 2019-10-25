@@ -110,7 +110,6 @@ class BuscaController extends Controller
             $nestedData [2] = $a->autor;
             $nestedData [3] = $a->genero;
             $nestedData [4] = $a->editora;
-            $nestedData [5] = $a->sinopse;
             $data [] = $nestedData;
         }
 
@@ -194,7 +193,6 @@ class BuscaController extends Controller
             $nestedDato [2] = $a->autor;
             $nestedDato [3] = $a->genero;
             $nestedDato [4] = $a->editora;
-            $nestedDato [5] = $a->sinopse;
             $dato [] = $nestedDato;
         }
 
