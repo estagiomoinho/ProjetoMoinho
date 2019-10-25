@@ -8,19 +8,16 @@
                 font-size: 36px;
     			text-align: center;
 		}
-        #ba{
-            margin-left: 1000px; 
-        }
    
 	</style>
 @stop
 
-@section('page_title','busca')
+@section('page_title','Busca-Avançada ')
 
 @section('page_header')
 	<div class="row">
 	<h1 class="page-title">
-	<i class="voyager-search"></i> Busca 
+	<i class="voyager-search"></i> Busca Avançada
 	
 
 
@@ -37,8 +34,8 @@
                 <div class="panel panel-primary panel-bordered">
                     <!-- form start -->
                     <form role="form"
-                          class="form-busca"
-                          id="form-busca"
+                          class="form-busca-avancada"
+                          id="form-busca-avancada"
                           action="#"
                           onsubmit="return false;"
                           method="GET" enctype="multipart/form-data">
@@ -63,22 +60,28 @@
                                         </ul>
                                     </div>
                                 @endif
-                                <div class="row">
-
-                                <div class="col-md-8  col-md-offset-2">
-                                	<div class="form-group col-md-12">
-                                    <label for="name"></label>
-                                    <input type="text" class="form-control" name="cpbusca" id="cpbusca" value="">
+                                <div class="form-group col-md-6">
+                                    <label for="name">Título:</label>
+                                    <input type="text" class="form-control" name="nome" id="nome" placeholder="Ex:Título do livro" value="">
                                 </div>
-                            </div>
+                                <div class="form-group col-md-6">
+                                    <label for="name">Autor::</label>
+                                    <input type="text" class="form-control" name="autor" id="autor" placeholder="Ex:Autor do livro" value="">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="name">Editora:</label>
+                                    <input type="text" class="form-control" name="editora" id="editora" placeholder="Ex:Nome da Editora" value="">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="name">Gênero:</label>
+                                    <input type="text" class="form-control" name="genero" id="genero" placeholder="Ex:Romance" value="">
                                 </div>
                                 
                             </div>
                         </div><!-- panel-body -->
 
                         <div class="panel-footer">
-                            <button type="text" class="btn btn-primary find buscar-arquivos">Buscar</button><button type="text" class="btn btn-primary" id="ba"><a href="http://127.0.0.1:8000/busca-avancada-externo">Busca Avançada</a></button>
-
+                            <button type="text" class="btn btn-primary find buscar-arquivos">Buscar</button>
                         </div>
                     </form>
 
@@ -93,11 +96,11 @@
 
                     <div class="panel-body" id="resultado" >
                         <div class="table-responsive">
-                            <table id="dataTable" class="table table-hover">
+                            <table id="datoTable" class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th>Capa</th>
-                                        <th>Título</th>
+                                        <th>Nome</th>
                                         <th>Autor</th>
                                         <th>Genero</th>
                                         <th>Editora</th>
@@ -118,7 +121,7 @@
 @section('javascript')
 <script >
 	 $(document).ready(function () {
-        var table = $('#dataTable').DataTable({!! json_encode(
+        var table = $('#datoTable').DataTable({!! json_encode(
                     array_merge([
                         "order" => [],
                         "bFilter"=> false,
@@ -130,9 +133,9 @@
                 , true) !!});
 	 	$('.buscar-arquivos').on('click', function (e) {
                  $.ajax({
-                    url: "{{ url('busca-resultado') }}",
+                    url: "{{ url('busca-resultado-avancado') }}",
                     type: "get",
-                    data: $( "#form-busca" ).serialize()
+                    data: $( "#form-busca-avancada" ).serialize()
                 }).done(function (result) {
                     $('#voyager-loader').fadeOut();
                     table.clear().draw();
@@ -146,4 +149,3 @@
 
 </script>
 @endsection
-

@@ -20,8 +20,8 @@ Route::get('busca-resultado',['uses'=> 'BuscaController@buscaLivro', 'as' =>'bus
 Route::get('/busca-avancada',['uses'=> 'BuscaController@buscaAvancada', 'as' =>'buscaAvancada']);
 Route::get('busca-resultado-avancado',['uses'=> 'BuscaController@buscaAvancadaLivro', 'as' =>'buscaAvancadaLivro']);
 
-//teste
-Route::get('busca-teste',['uses'=> 'BuscaController@buscaTeste', 'as' =>'buscaTeste']);
+Route::get('/busca-avancada-externo',['uses'=> 'BuscaController@buscaExterna', 'as' =>'buscaAvancada']);
+
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

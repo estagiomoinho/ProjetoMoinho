@@ -22,7 +22,7 @@ class BuscaController extends Controller
     }
 
     public function buscaExterna(){
-        return view('buscaaberta/busca');
+        return view('buscaaberta/avancadoexterno');
     }
 
 
@@ -92,30 +92,7 @@ class BuscaController extends Controller
         //
     }
 
-    public function buscaTeste(Request $R){
-        $livro = Livro::select('*');
-
-         if($R->cpbusca != null){
-            $livro->where('titulo', 'like', '%'.$R->cpbusca.'%');
-             
-        }
-        $data = array();
-        foreach ( $livro->get() as $a ) {
-
-            $nestedData = array ();
-            $nestedData [0] = $a->titulo;
-            $nestedData [1] = $a->titulo;
-            $nestedData [2] = $a->autor;
-            $nestedData [3] = $a->genero;
-            $nestedData [4] = $a->editora;
-            $nestedData [5] = $a->sinopse;
-            $data [] = $nestedData;
-        }
-
-        return ($data);
-    }
-
-
+   
     public function buscaLivro(Request $R){
         
         $livro = Livro::select('*');
