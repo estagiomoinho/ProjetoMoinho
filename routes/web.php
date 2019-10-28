@@ -21,6 +21,7 @@ Route::get('/busca-avancada',['uses'=> 'BuscaController@buscaAvancada', 'as' =>'
 Route::get('busca-resultado-avancado',['uses'=> 'BuscaController@buscaAvancadaLivro', 'as' =>'buscaAvancadaLivro']);
 
 Route::get('/busca-avancada-externo',['uses'=> 'BuscaController@buscaExterna', 'as' =>'buscaAvancada']);
+// Route::get('/busca-aberta',['uses'=> 'BuscaController@buscaExternaSimples', 'as' =>'busca']);
 
 
 Route::group(['prefix' => 'admin'], function () {

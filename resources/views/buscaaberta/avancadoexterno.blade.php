@@ -14,14 +14,16 @@
 
 @section('page_title','Busca-Avançada ')
 
+@section('page_title','Busca-Avançada ')
+
 @section('page_header')
-	<div class="row">
-	<h1 class="page-title">
-	<i class="voyager-search"></i> Busca Avançada
-	
+    <div class="row">
+    <h1 class="page-title">
+    <i class="voyager-search"></i> Busca Avançada  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://127.0.0.1:8000/">Busca...</a>
+    
 
 
-	</h1>
+    </h1>
     </div>
 
 @stop
@@ -104,7 +106,6 @@
                                         <th>Autor</th>
                                         <th>Genero</th>
                                         <th>Editora</th>
-                                        <th>Sinopse</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -120,7 +121,7 @@
 
 @section('javascript')
 <script >
-	 $(document).ready(function () {
+     $(document).ready(function () {
         var table = $('#datoTable').DataTable({!! json_encode(
                     array_merge([
                         "order" => [],
@@ -131,7 +132,7 @@
                     ],
                     config('voyager.dashboard.data_tables', []))
                 , true) !!});
-	 	$('.buscar-arquivos').on('click', function (e) {
+        $('.buscar-arquivos').on('click', function (e) {
                  $.ajax({
                     url: "{{ url('busca-resultado-avancado') }}",
                     type: "get",

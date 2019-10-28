@@ -18,13 +18,10 @@
 @section('page_title','busca')
 
 @section('page_header')
-	<div class="row">
-	<h1 class="page-title">
-	<i class="voyager-search"></i> Busca 
-	
-
-
-	</h1>
+    <div class="row">
+    <h1 class="page-title">
+    <i class="voyager-search"></i> Busca &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://127.0.0.1:8000/busca-avancada-externo">Busca Avançada...</a>
+    </h1>
     </div>
 
 @stop
@@ -66,7 +63,7 @@
                                 <div class="row">
 
                                 <div class="col-md-8  col-md-offset-2">
-                                	<div class="form-group col-md-12">
+                                    <div class="form-group col-md-12">
                                     <label for="name"></label>
                                     <input type="text" class="form-control" name="cpbusca" id="cpbusca" value="">
                                 </div>
@@ -77,7 +74,7 @@
                         </div><!-- panel-body -->
 
                         <div class="panel-footer">
-                            <button type="text" class="btn btn-primary find buscar-arquivos">Buscar</button><button type="text" class="btn btn-primary" id="ba"><a href="http://127.0.0.1:8000/busca-avancada-externo">Busca Avançada</a></button>
+                            <button type="text" class="btn btn-primary find buscar-arquivos">Buscar</button>
 
                         </div>
                     </form>
@@ -101,7 +98,6 @@
                                         <th>Autor</th>
                                         <th>Genero</th>
                                         <th>Editora</th>
-                                        <th>Sinopse</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -117,7 +113,7 @@
 
 @section('javascript')
 <script >
-	 $(document).ready(function () {
+     $(document).ready(function () {
         var table = $('#dataTable').DataTable({!! json_encode(
                     array_merge([
                         "order" => [],
@@ -128,7 +124,7 @@
                     ],
                     config('voyager.dashboard.data_tables', []))
                 , true) !!});
-	 	$('.buscar-arquivos').on('click', function (e) {
+        $('.buscar-arquivos').on('click', function (e) {
                  $.ajax({
                     url: "{{ url('busca-resultado') }}",
                     type: "get",
@@ -146,4 +142,6 @@
 
 </script>
 @endsection
+
+
 

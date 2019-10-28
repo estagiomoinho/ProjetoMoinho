@@ -20,6 +20,9 @@ class BuscaController extends Controller
     {
         return view('busca/avancado');
     }
+    public function buscaExternaSimples(){
+        return view('buscaaberta/busca');
+    }
 
     public function buscaExterna(){
         return view('buscaaberta/avancadoexterno');
