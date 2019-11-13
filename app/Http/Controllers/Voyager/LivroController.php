@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Controllers\Voyager;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -21,7 +20,6 @@ class LivroController extends VoyagerBaseController
 {
     use BreadRelationshipParser;
 
-
     /**
      * POST BRE(A)D - Store data.
      *
@@ -41,13 +39,19 @@ class LivroController extends VoyagerBaseController
 
         // Validate fields with ajax
         $val = $this->validateBread($request->all(), $dataType->addRows)->validate();
-
         $Prateleira = Prateleira::where('genero', '=', $request->genero)->first();
         //return var_dump($Prateleira);
 
         if ($Prateleira != null && $Prateleira != 'null') {
             $request->merge([
                'prateleira_id' => $Prateleira->id,
+           ]);
+        }elseif ($Prateleira->cheio != 0) {
+            return redirect()
+            ->route("voyager.{$dataType->slug}.index")
+            ->with([
+                'message'    =>'Erro: Prateleira cheia',
+                'alert-type' => 'error',
             ]);
         }else{
             return redirect()
@@ -57,16 +61,5 @@ class LivroController extends VoyagerBaseController
                 'alert-type' => 'error',
             ]);
         }
-        
-        $data = $this->insertUpdateData($request, $slug, $dataType->addRows, new $dataType->model_name());
-
-        event(new BreadDataAdded($dataType, $data));
-
-        return redirect()
-        ->route("voyager.{$dataType->slug}.index")
-        ->with([
-            'message'    => __('voyager::generic.successfully_added_new')." {$dataType->display_name_singular}",
-            'alert-type' => 'success',
-        ]);
     }
 }

@@ -1,4 +1,4 @@
-@extends('voyager::master')
+@extends('voyager::masterbusca')
 
 @section('css')
 	<meta name="csrf-token content={{ csrf_token() }}">
@@ -8,20 +8,20 @@
                 font-size: 36px;
     			text-align: center;
 		}
+        #ba{
+            margin-left: 1000px; 
+        }
    
 	</style>
 @stop
 
-@section('page_title','Busca-Avançada ')
+@section('page_title','busca')
 
 @section('page_header')
-	<div class="row">
-	<h1 class="page-title">
-	<i class="voyager-search"></i> Busca Avançada  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://127.0.0.1:8000/busca">Busca...</a>
-	
-
-
-	</h1>
+    <div class="row">
+    <h1 class="page-title">
+    <i class="voyager-search"></i> Busca &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://127.0.0.1:8000/busca-avancada-externo">Busca Avançada...</a>
+    </h1>
     </div>
 
 @stop
@@ -34,8 +34,8 @@
                 <div class="panel panel-primary panel-bordered">
                     <!-- form start -->
                     <form role="form"
-                          class="form-busca-avancada"
-                          id="form-busca-avancada"
+                          class="form-busca"
+                          id="form-busca"
                           action="#"
                           onsubmit="return false;"
                           method="GET" enctype="multipart/form-data">
@@ -60,21 +60,14 @@
                                         </ul>
                                     </div>
                                 @endif
-                                <div class="form-group col-md-6">
-                                    <label for="name">Título:</label>
-                                    <input type="text" class="form-control" name="nome" id="nome" placeholder="Ex:Título do livro" value="">
+                                <div class="row">
+
+                                <div class="col-md-8  col-md-offset-2">
+                                    <div class="form-group col-md-12">
+                                    <label for="name"></label>
+                                    <input type="text" class="form-control" name="cpbusca" id="cpbusca" value="">
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="name">Autor::</label>
-                                    <input type="text" class="form-control" name="autor" id="autor" placeholder="Ex:Autor do livro" value="">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="name">Editora:</label>
-                                    <input type="text" class="form-control" name="editora" id="editora" placeholder="Ex:Nome da Editora" value="">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="name">Gênero:</label>
-                                    <input type="text" class="form-control" name="genero" id="genero" placeholder="Ex:Romance" value="">
+                            </div>
                                 </div>
                                 
                             </div>
@@ -82,6 +75,7 @@
 
                         <div class="panel-footer">
                             <button type="text" class="btn btn-primary find buscar-arquivos">Buscar</button>
+
                         </div>
                     </form>
 
@@ -96,11 +90,11 @@
 
                     <div class="panel-body" id="resultado" >
                         <div class="table-responsive">
-                            <table id="datoTable" class="table table-hover">
+                            <table id="dataTable" class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th>Capa</th>
-                                        <th>Nome</th>
+                                        <th>Título</th>
                                         <th>Autor</th>
                                         <th>Genero</th>
                                         <th>Editora</th>
@@ -119,8 +113,8 @@
 
 @section('javascript')
 <script >
-	 $(document).ready(function () {
-        var table = $('#datoTable').DataTable({!! json_encode(
+     $(document).ready(function () {
+        var table = $('#dataTable').DataTable({!! json_encode(
                     array_merge([
                         "order" => [],
                         "bFilter"=> false,
@@ -130,11 +124,11 @@
                     ],
                     config('voyager.dashboard.data_tables', []))
                 , true) !!});
-	 	$('.buscar-arquivos').on('click', function (e) {
+        $('.buscar-arquivos').on('click', function (e) {
                  $.ajax({
-                    url: "{{ url('busca-resultado-avancado') }}",
+                    url: "{{ url('busca-resultado') }}",
                     type: "get",
-                    data: $( "#form-busca-avancada" ).serialize()
+                    data: $( "#form-busca" ).serialize()
                 }).done(function (result) {
                     $('#voyager-loader').fadeOut();
                     table.clear().draw();
@@ -148,3 +142,6 @@
 
 </script>
 @endsection
+
+
+
