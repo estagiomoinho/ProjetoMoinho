@@ -44,15 +44,16 @@ class LivroController extends VoyagerBaseController
 
         if ($Prateleira != null && $Prateleira != 'null') {
             $request->merge([
-               'prateleira_id' => $Prateleira->id,
-           ]);
-        }elseif ($Prateleira->cheio != 0) {
-            return redirect()
-            ->route("voyager.{$dataType->slug}.index")
-            ->with([
-                'message'    =>'Erro: Prateleira cheia',
-                'alert-type' => 'error',
-            ]);
+             'prateleira_id' => $Prateleira->id,
+         ]);
+            if ($Prateleira->cheio) {
+                return redirect()
+                ->route("voyager.{$dataType->slug}.index")
+                ->with([
+                    'message'    =>'Erro: Prateleira cheia',
+                    'alert-type' => 'error',
+                ]);
+            }
         }else{
             return redirect()
             ->route("voyager.{$dataType->slug}.index")
@@ -61,5 +62,15 @@ class LivroController extends VoyagerBaseController
                 'alert-type' => 'error',
             ]);
         }
+        $data = $this->insertUpdateData($request, $slug, $dataType->addRows, new $dataType->model_name());
+
+        event(new BreadDataAdded($dataType, $data));
+
+        return redirect()
+        ->route("voyager.{$dataType->slug}.index")
+        ->with([
+            'message'    => __('voyager::generic.successfully_added_new')." {$dataType->display_name_singular}",
+            'alert-type' => 'Success',
+        ]);
     }
 }
