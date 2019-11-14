@@ -70,7 +70,7 @@ class LivroController extends VoyagerBaseController
         ->route("voyager.{$dataType->slug}.index")
         ->with([
             'message'    => __('voyager::generic.successfully_added_new')." {$dataType->display_name_singular}",
-            'alert-type' => 'Success',
+            'alert-type' => 'Livro adicionado à prateleira com sucesso',
         ]);
     }
 }
