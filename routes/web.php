@@ -23,8 +23,6 @@ Route::get('busca-resultado-avancado',['uses'=> 'BuscaController@buscaAvancadaLi
 Route::get('/busca-avancada-externo',['uses'=> 'BuscaController@buscaExterna', 'as' =>'buscaAvancada']);
 // Route::get('/busca-aberta',['uses'=> 'BuscaController@buscaExternaSimples', 'as' =>'busca']);
 
-Route::get('carteira', 'PDFController@carteira');
-
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
